@@ -1,0 +1,22 @@
+{
+    "name": "magefan/module-mymodule",
+    "description": "Simple M2 Module",
+    "type": "magento2-module",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "GoStars",
+            "email": "gostars@meta.ua"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magefan\\MyModule\\": ""
+        }
+    }
+}
