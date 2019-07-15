@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<config 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd"
+>
+  <menu>
+    <add 
+      id="Magefan_MyModule::mymodule" 
+      title="My Module" 
+      module="Magefan_MyModule" 
+      sortOrder="51" 
+      resource="Magefan_MyModule::mymodule"
+    />
+    <add 
+      id="Magefan_MyModule::greeting_message" 
+      title="Greeting Message" 
+      module="Magefan_MyModule" 
+      sortOrder="10" 
+      action="magefan_mymodule/greeting_message" 
+      resource="Magefan_MyModule::greeting_message" 
+      parent="Magefan_MyModule::mymodule"
+    />
+    <add 
+      id="Magefan_MyModule::mymodule_configuration" 
+      title="Configuration" 
+      module="Magefan_MyModule" 
+      sortOrder="99" 
+      parent="Magefan_MyModule::mymodule" 
+      action="adminhtml/system_config/edit/section/mymodule" 
+      resource="Magefan_MyModule::mymodule_configuration"
+    />
+  </menu>
+</config>
