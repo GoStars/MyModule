@@ -1,0 +1,52 @@
+<?php
+    /**
+     * @var \Magefan\MyModule\Block\View $block
+     */
+    echo $block->sayHello();
+?>
+
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) { 
+                background-color: #dddddd; 
+            }
+
+            .greeting-id {
+                width:2%;
+            }
+
+            .greeting-message {
+                width:30%;
+            }
+        </style>
+
+        <table>
+            <tr>
+                <th class="greeting-id">Id</th>
+                <th class="greeting-message">Message</th>
+                <th class="greeting-message">Season</th>
+            </tr>
+            <?php
+                foreach ($block->getGreetingMessageCollection() as $key => $message) {
+                    echo '<tr>
+                    <td>'.$message->getGreetingId().'</td>
+                    <td>'.$message->getMessage().'</td>
+                    <td>'.$message->getSeason().'</td>
+                    </tr>';
+                }
+            ?>
+        </table>
+    </body>
+</html>
