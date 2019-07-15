@@ -3,35 +3,42 @@
 
     use Magento\Framework\App\Action\Action;
     use Magento\Framework\App\Action\Context;
-    use Magento\Framework\Controller\Result\JsonFactory;
+    use Magento\Framework\View\Result\PageFactory;
+    use Magefan\MyModule\Model\GreetingMessageFactory;
 
     class View extends Action {
-        /**
-         * @var \Magento\Framework\Controller\Result\JsonFactory
-         */
-        protected $resultJsonFactory;
+        protected $_pageFactory;
+        protected $_greetingMessageFactory;
 
         /**
          * @param \Magento\Framework\App\Action\Context $context
-         * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
          */
         public function __construct(
             Context $context, 
-            JsonFactory $resultJsonFactory
+            PageFactory $pageFactory,
+            GreetingMessageFactory $greetingMessageFactory
+
         ) {
-           $this->resultJsonFactory = $resultJsonFactory;
-           parent::__construct($context);
+            $this->_pageFactory = $pageFactory;
+            $this->_greetingMessageFactory = $greetingMessageFactory;
+            parent::__construct($context);
         }
 
         /**
          * View  page action
-         *
-         * @return \Magento\Framework\Controller\ResultInterface
-         */
+        */
         public function execute() {
-           $result = $this->resultJsonFactory->create();
-           $data = ['message' => 'Hello world!'];
+            $greetingMessage = $this->_greetingMessageFactory->create();
+            $collection = $greetingMessage->getCollection();
 
-            return $result->setData($data);
+            foreach ($collection as $item) {
+                echo '<pre>';
+                print_r($item->getData());
+                echo '</pre>';
+            }
+
+            exit();
+
+            return $this->_pageFactory->create();
         }   
     }

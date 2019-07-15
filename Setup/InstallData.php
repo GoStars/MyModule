@@ -30,7 +30,7 @@
 
             foreach ($data as $bind) {
                 $setup->getConnection()
-                    ->insertForce($setup->getTable('greeting_message'), $bind);
+                    ->insertForce($setup->getTable('magefan_mymodule_greeting_message'), $bind);
             }
         }
     }

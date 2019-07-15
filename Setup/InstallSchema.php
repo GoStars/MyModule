@@ -19,10 +19,10 @@
             ModuleContextInterface $context
         ) {
             /**
-            * Create table 'greeting_message'
+            * Create table 'magefan_mymodule_greeting_message'
             */
             $table = $setup->getConnection()
-                ->newTable($setup->getTable('greeting_message'))
+                ->newTable($setup->getTable('magefan_mymodule_greeting_message'))
                     ->addColumn(
                         'greeting_id',
                         Table::TYPE_INTEGER,

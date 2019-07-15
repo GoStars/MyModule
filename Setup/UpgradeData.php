@@ -22,7 +22,7 @@
             if ($context->getVersion()
                 && version_compare($context->getVersion(), '1.0.1') < 0
             ) {
-                $table = $setup->getTable('greeting_message');
+                $table = $setup->getTable('magefan_mymodule_greeting_message');
 
                 $setup->getConnection()->insertForce($table, [
                     'message' => 'Happy Thanksgiving',

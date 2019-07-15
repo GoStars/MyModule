@@ -21,7 +21,7 @@
 
             if (version_compare($context->getVersion(), '1.0.1', '<')) {
                 $setup->getConnection()->addColumn(
-                    $setup->getTable('greeting_message'),
+                    $setup->getTable('magefan_mymodule_greeting_message'),
                     'season',
                     [
                         'type' => Table::TYPE_TEXT,
