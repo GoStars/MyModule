@@ -35,6 +35,7 @@
                     'greeting_id IN (1,2)'
                 );
             }
+            
             $setup->endSetup();
         }
     }

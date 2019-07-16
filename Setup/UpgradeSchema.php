@@ -32,6 +32,33 @@
                     ]
                 );
             }
+
+            if (version_compare($context->getVersion(), '1.0.2', '<')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('magefan_mymodule_greeting_message'),
+                    'created_at',
+                    [
+                        'type' => Table::TYPE_TIMESTAMP,
+                        'length' => null,
+                        'nullable' => false,
+                        'default' => Table::TIMESTAMP_INIT,
+                        'comment' => 'Created At'
+                    ]
+                );
+                
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('magefan_mymodule_greeting_message'),
+                    'updated_at',
+                    [
+                        'type' => Table::TYPE_TIMESTAMP,
+                        'length' => null,
+                        'nullable' => false,
+                        'default' => Table::TIMESTAMP_INIT_UPDATE,
+                        'comment' => 'Updated At'
+                    ]
+                );
+            }
+
             $setup->endSetup();
         }
     }
