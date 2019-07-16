@@ -8,8 +8,9 @@
   <body>
     <referenceContainer name="content">
       <block 
-        class="Magento\Framework\View\Element\Template" 
-        template="Magefan_MyModule::hello.phtml" 
+        class="Magefan\MyModule\Block\View"
+        name="mymodule_view_text"
+        template="Magefan_MyModule::display_text.phtml" 
       />
     </referenceContainer>
   </body>

@@ -1,7 +1,7 @@
 var config = {
     map: {
         '*': {
-            hello: 'Magefan_MyModule/js/hello'
+            display_text: 'Magefan_MyModule/js/display_text'
         }
     }
 };

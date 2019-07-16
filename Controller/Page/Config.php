@@ -18,8 +18,16 @@
 
         public function execute() {
             // TODO: Implement execute() method.
-            echo $this->helperData->getGeneralConfig('enable');
-            echo $this->helperData->getGeneralConfig('display_text');
+
+            $enable = $this->helperData->getGeneralConfig('enable');
+            $displayText = $this->helperData->getGeneralConfig('display_text');
+
+            if ($enable == 1) {
+                echo $displayText;
+            } else {
+                echo 'Module disabled!';
+            }
+
             exit();
         }
     }

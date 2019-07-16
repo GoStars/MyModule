@@ -17,7 +17,7 @@
       title="Greeting Message" 
       module="Magefan_MyModule" 
       sortOrder="10" 
-      action="magefan_mymodule/greeting_message" 
+      action="magefan_mymodule/greetingmessage" 
       resource="Magefan_MyModule::greeting_message" 
       parent="Magefan_MyModule::mymodule"
     />
