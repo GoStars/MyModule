@@ -7,6 +7,8 @@
     
     class View extends Action {
         protected $_pageFactory;
+
+        protected $title;
         
         /**
          * @param \Magento\Framework\App\Action\Context $context
@@ -19,10 +21,24 @@
             parent::__construct($context);
         }
 
+        public function setTitle($title) {
+            return $this->title = $title;
+        }
+
+        public function getTitle() {
+            return $this->title;
+        }
+
         /**
          * View  page action
         */
         public function execute() {
+            echo $this->setTitle('Welcome');
+
+            echo $this->getTitle();
+
+            exit();
+
             return $this->_pageFactory->create();
         }   
     }
