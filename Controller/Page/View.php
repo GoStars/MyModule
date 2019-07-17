@@ -4,6 +4,7 @@
     use Magento\Framework\App\Action\Action;
     use Magento\Framework\App\Action\Context;
     use Magento\Framework\View\Result\PageFactory;
+    use Magento\Framework\DataObject;
     
     class View extends Action {
         protected $_pageFactory;
@@ -33,11 +34,14 @@
          * View  page action
         */
         public function execute() {
-            echo $this->setTitle('Welcome');
+            // Event
+            $textDisplay = new DataObject(['text' => 'Magefan']);
+            $this->_eventManager->dispatch('magefan_mymodule_display_text', ['mp_text' => $textDisplay]);
+            echo $textDisplay->getText();
 
+            // Plugin
+            $this->setTitle('Welcome');
             echo $this->getTitle();
-
-            exit();
 
             return $this->_pageFactory->create();
         }   

@@ -12,7 +12,7 @@
     </arguments>
   </type>
   <type name="Magefan\MyModule\Controller\Page\View">
-    <plugin name="Magefan_MyModule_Plugin" type="Magefan\MyModule\Plugin\MyPlugin" sortOrder="10" disabled="false" />
+    <plugin name="Magefan_MyModule_Plugin" type="Magefan\MyModule\Plugin\ViewPlugin" sortOrder="10" disabled="false" />
   </type>
   <virtualType 
     name="Magefan\MyModule\Model\ResourceModel\GreetingMessage\Grid\Collection" 
