@@ -7,9 +7,15 @@
 >
   <referenceContainer name="content">
     <block 
-      class="Magefan\MyModule\Block\View" 
+      class="Magento\Framework\View\Element\Template" 
       name="mymodule_view" 
       template="Magefan_MyModule::greeting_message.phtml" 
-    />
+    >
+      <arguments>
+        <argument name="viewModel" xsi:type="object">
+          Magefan\MyModule\ViewModel\View
+        </argument>
+      </arguments>
+    </block>
   </referenceContainer>
 </page>

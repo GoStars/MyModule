@@ -1,8 +1,11 @@
 <?php
     /**
-     * @var \Magefan\MyModule\Block\View $block
+     * @var \Magento\Framework\View\Element\Template
+     * @var \Magefan\MyModule\ViewModel\View $viewModel
      */
-    echo $block->sayHello();
+    $viewModel = $block->getData('viewModel');
+
+    echo $viewModel->sayHello();
 ?>
 
         <style>
@@ -39,7 +42,7 @@
                 <th class="greeting-message">Season</th>
             </tr>
             <?php
-                foreach ($block->getGreetingMessageCollection() as $key => $message) {
+                foreach ($viewModel->getGreetingMessageCollection() as $key => $message) {
                     echo '<tr>
                     <td>'.$message->getGreetingId().'</td>
                     <td>'.$message->getMessage().'</td>

@@ -1,24 +1,21 @@
 <?php
-    namespace Magefan\MyModule\Block;
+    namespace Magefan\MyModule\ViewModel;
 
-    use Magento\Framework\View\Element\Template;
-    use Magento\Framework\View\Element\Template\Context;
+    use Magento\Framework\View\Element\Block\ArgumentInterface;
     use Magefan\MyModule\Model\GreetingMessageFactory;
     use Magefan\MyModule\Helper\Data;
 
-    class View extends Template {
+    class View implements ArgumentInterface {
         protected $_greetingMessageFactory;
 
         protected $helperData;
 
         public function __construct(
-            Context $context,
             GreetingMessageFactory $greetingMessageFactory,
             Data $helperData
         ) {
             $this->_greetingMessageFactory = $greetingMessageFactory;
             $this->helperData = $helperData;
-            parent::__construct($context);
         }
 
         public function sayHello() {

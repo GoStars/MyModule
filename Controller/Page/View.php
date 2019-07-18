@@ -36,7 +36,7 @@
         public function execute() {
             // Event
             $textDisplay = new DataObject(['text' => 'Magefan']);
-            $this->_eventManager->dispatch('magefan_mymodule_display_text', ['mp_text' => $textDisplay]);
+            $this->_eventManager->dispatch('magefan_mymodule_display_text', ['mf_text' => $textDisplay]);
             echo $textDisplay->getText();
 
             // Plugin

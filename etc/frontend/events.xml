@@ -5,6 +5,6 @@
   xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
 >
   <event name="magefan_mymodule_display_text">
-    <observer name="mp_display_text" instance="Magefan\MyModule\Observer\ChangeDisplayText" />
+    <observer name="mf_display_text" instance="Magefan\MyModule\Observer\ChangeDisplayText" />
   </event>
 </config>
