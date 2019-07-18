@@ -5,6 +5,7 @@
     use Magento\Framework\App\Action\Context;
     use Magento\Framework\View\Result\PageFactory;
     use Magento\Framework\DataObject;
+    use Magento\Framework\Debug;
     
     class View extends Action {
         protected $_pageFactory;
@@ -23,6 +24,8 @@
         }
 
         public function setTitle($title) {
+            // Debug::backtrace(); exit;
+
             return $this->title = $title;
         }
 
