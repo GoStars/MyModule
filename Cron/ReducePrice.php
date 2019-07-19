@@ -12,29 +12,30 @@
             $this->_productFactory = $productFactory;
         }
 
-        public function getPriceById($id) {
-            $product = $this->_productFactory->create();
-            $productPriceById = $product->load($id)->getPrice();
-            
-            return $productPriceById;
-        }
-
-        public function execute() {
-            $product = $this->_productFactory->create()->load(1);
-            $price = $this->getPriceById(1);
+        public function reduceProductPrice($id) {
+            $product = $this->_productFactory->create()->load($id);
+            $price = $product->getPrice();
 
             if ($price > 5) {
                 $price -= 1;
-            }
 
-            $product->setPrice($price);
-            $product->save();
+                $product->setPrice($price);
+                $product->save();
+
+                return 'Price changed to ' . $price . '!';
+            } else {
+                return 'Price didn\'t change!';
+            }
+        }
+
+        public function execute() {
+            $result = $this->reduceProductPrice(1);
 
             $writer = new Stream(BP . '/var/log/cron.log');
             $logger = new Logger();
             
             $logger->addWriter($writer);
-            $logger->info('Price changed!');
+            $logger->info($result);
 
             return $this;
         }
