@@ -21,7 +21,7 @@
       </item>
     </item>
   </argument>
-  <dataSource name="nameOfDataSource">
+  <dataSource name="magefan_myblog_listing_data_source">
     <argument name="dataProvider" xsi:type="configurableObject">
       <argument name="class" xsi:type="string">
         Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider
@@ -63,7 +63,7 @@
           <item name="config" xsi:type="array">
             <item name="type" xsi:type="string">delete</item>
             <item name="label" xsi:type="string" translate="true">Delete</item>
-            <item name="url" xsi:type="url" path="magefan_myblog/greetingmessage/massDelete" />
+            <item name="url" xsi:type="url" path="magefan_mymodule/greetingmessage/massDelete" />
             <item name="confirm" xsi:type="array">
               <item name="title" xsi:type="string" translate="true">Delete Message</item>
               <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
@@ -142,6 +142,15 @@
         </item>
       </argument>
     </column>
+    <actionsColumn name="actions" class="Magefan\MyModule\Ui\Component\Listing\Column\GreetingMessageAction">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="indexField" xsi:type="string">greeting_id</item>
+          <item name="viewUrlPath" xsi:type="string">magefan_mymodule/greetingmessage/edit</item>
+          <item name="urlEntityParamName" xsi:type="string">greeting_id</item>
+        </item>
+      </argument>
+    </actionsColumn>
   </columns>
 </listing>
 

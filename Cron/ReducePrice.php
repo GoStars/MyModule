@@ -3,17 +3,17 @@
 
     use Zend\Log\Writer\Stream;
     use Zend\Log\Logger;
-    use Magento\Catalog\Model\ProductFactory;
+    use Magento\Catalog\Model\ProductRepository;
 
     class ReducePrice {
-        protected $_productFactory;
+        protected $_productRepository;
 
-        public function __construct(ProductFactory $productFactory) {
-            $this->_productFactory = $productFactory;
+        public function __construct(ProductRepository $productRepository) {
+            $this->_productRepository = $productRepository;
         }
 
         public function reduceProductPrice($id) {
-            $product = $this->_productFactory->create()->load($id);
+            $product = $this->_productRepository->getById($id);
             $price = $product->getPrice();
 
             if ($price > 5) {

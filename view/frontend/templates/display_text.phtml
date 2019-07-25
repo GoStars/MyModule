@@ -5,7 +5,7 @@
      */
     $viewModel = $block->getData('viewModel');
     
-    $text = $viewModel->displayText();
+    $text = $block->escapeHtml($viewModel->displayText());
 ?>
 
 <div data-mage-init='{"display_text": {"message": "<?php echo $text; ?>"}}'>

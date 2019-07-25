@@ -7,7 +7,6 @@
 >
   <referenceContainer name="content">
     <block 
-      class="Magento\Framework\View\Element\Template" 
       name="mymodule_view" 
       template="Magefan_MyModule::greeting_message.phtml" 
     >

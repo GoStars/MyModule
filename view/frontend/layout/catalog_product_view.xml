@@ -8,7 +8,6 @@
   <body>
     <referenceContainer name="content">
       <block 
-        class="Magento\Framework\View\Element\Template"
         name="mymodule_view_text"
         template="Magefan_MyModule::display_text.phtml" 
       >

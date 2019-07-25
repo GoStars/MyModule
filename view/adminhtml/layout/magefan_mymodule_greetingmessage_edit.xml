@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<page 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  layout="admin-2columns-left" 
+  xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"
+>
+  <head>
+    <css src="jquery/fileUploader/css/jquery.fileupload-ui.css" />
+  </head>
+  <update handle="editor" />
+  <body>
+    <referenceContainer name="content">
+      <block 
+        class="Magefan\MyModule\Block\Adminhtml\GreetingMessage\Edit" 
+        name="magefan_mymodule_greetingmessage_edit" 
+      />
+    </referenceContainer>
+
+    <referenceContainer name="left">
+      <block 
+        class="Magefan\MyModule\Block\Adminhtml\GreetingMessage\Edit\Tabs" 
+        name="magefan_mymodule_greetingmessage_edit_tabs"
+      >
+        <block 
+          class="Magefan\MyModule\Block\Adminhtml\GreetingMessage\Edit\Tab\Main" 
+          name="magefan_mymodule_greetingmessage_edit_tab_main"
+        />
+        <action method="addTab">
+          <argument name="name" xsi:type="string">main_section</argument>
+          <argument name="block" xsi:type="string">magefan_mymodule_greetingmessage_edit_tab_main</argument>
+        </action>
+      </block>
+    </referenceContainer>
+  </body>
+</page>
