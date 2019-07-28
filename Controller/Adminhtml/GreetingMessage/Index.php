@@ -1,11 +1,13 @@
 <?php
     namespace Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
 
-    use Magento\Backend\App\Action;
+    use Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
     use Magento\Backend\App\Action\Context;
+    use Magento\Framework\Registry;
     use Magento\Framework\View\Result\PageFactory;
 
-    class Index extends Action {
+    class Index extends GreetingMessage
+    {
         /**
          * @var PageFactory
          */
@@ -13,31 +15,30 @@
 
         /**
          * @param Context $context
+         * @param Registry $coreRegistry
          * @param PageFactory $resultPageFactory
          */
         public function __construct(
             Context $context,
+            Registry $coreRegistry,
             PageFactory $resultPageFactory
         ) {
-            parent::__construct($context);
             $this->resultPageFactory = $resultPageFactory;
+            parent::__construct($context, $coreRegistry);
         }
 
         /**
          * Index action
          *
-         * @return void
+         * @return \Magento\Framework\Controller\ResultInterface
          */
-        public function execute() {
-            /** 
-             * @var \Magento\Backend\Model\View\Result\Page $resultPage
-             */
+        public function execute()
+        {
+            /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->resultPageFactory->create();
-            $resultPage->setActiveMenu('Magefan_MyModule::greetingmessage');
-            $resultPage->addBreadcrumb(__('CMS'), __('CMS'));
-            $resultPage->addBreadcrumb(__('Manage MyModule'), __('Manage MyModule'));
-            $resultPage->getConfig()->getTitle()->prepend((__('Greeting Message')));
 
+            $this->initPage($resultPage)->getConfig()->getTitle()->prepend(__('Items'));
+            
             return $resultPage;
         }
     }

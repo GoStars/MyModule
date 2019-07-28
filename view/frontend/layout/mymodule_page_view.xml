@@ -17,4 +17,5 @@
       </arguments>
     </block>
   </referenceContainer>
+  <referenceContainer name="store.menu" remove="true" />
 </page>

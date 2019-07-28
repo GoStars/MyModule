@@ -1,46 +1,42 @@
 <?php
     namespace Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
 
-    use Magento\Backend\App\Action;
+    use Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
     use Magento\Backend\App\Action\Context;
+    use Magento\Framework\Registry;
     use Magento\Backend\Model\View\Result\ForwardFactory;
 
-    class NewAction extends Action {
+    class NewAction extends GreetingMessage
+    {
         /**
-         * @var \Magento\Backend\Model\View\Result\Forward
+         * @var ForwardFactory
          */
         protected $resultForwardFactory;
-        
+
         /**
-         * @param \Magento\Backend\App\Action\Context $context
-         * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+         * @param Context $context
+         * @param Registry $coreRegistry
+         * @param ForwardFactory $resultForwardFactory
          */
         public function __construct(
             Context $context,
+            Registry $coreRegistry,
             ForwardFactory $resultForwardFactory
         ) {
             $this->resultForwardFactory = $resultForwardFactory;
-            parent::__construct($context);
+            parent::__construct($context, $coreRegistry);
         }
 
         /**
-         * Forward to edit
+         * Create new item
          *
-         * @return \Magento\Backend\Model\View\Result\Forward
+         * @return \Magento\Framework\Controller\ResultInterface
          */
-        public function execute() {
-            /** 
-             * @var \Magento\Backend\Model\View\Result\Forward $resultForward
-             */
+        public function execute()
+        {
+            /** @var \Magento\Framework\Controller\Result\Forward $resultForward */
             $resultForward = $this->resultForwardFactory->create();
             
             return $resultForward->forward('edit');
-        }
-
-        /**
-         * {@inheritdoc}
-         */
-        protected function _isAllowed() {
-            return true;
         }
     }

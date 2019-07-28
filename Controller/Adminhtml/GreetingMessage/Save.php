@@ -1,58 +1,66 @@
 <?php
     namespace Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
 
-    use Magento\Backend\App\Action;
-    use Magento\Framework\Exception\LocalizedException;
+    use Magefan\MyModule\Controller\Adminhtml\GreetingMessage;
 
-    class Save extends Action {
-        /**
-         * @param Action\Context $context
-         */
-        public function __construct(Action\Context $context) {
-            parent::__construct($context);
-        }
-
+    class Save extends GreetingMessage
+    {
         /**
          * Save action
          *
          * @return \Magento\Framework\Controller\ResultInterface
          */
-        public function execute() {
-            $data = $this->getRequest()->getPostValue();
-            /** 
-             * @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect
-             */
+        public function execute()
+        {
+            /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultRedirectFactory->create();
+            // check if data sent
+            $data = $this->getRequest()->getPostValue();
 
             if ($data) {
-                $model = $this->_objectManager->create('Magefan\MyModule\Model\GreetingMessage');
                 $id = $this->getRequest()->getParam('greeting_id');
+                $model = $this->_objectManager->create('Magefan\MyModule\Model\GreetingMessage')->load($id);
 
-                if ($id) {
-                    $model->load($id);
+                if (!$model->getId() && $id) {
+                    $this->messageManager->addError(__('This item no longer exists.'));
+
+                    return $resultRedirect->setPath('*/*/');
                 }
+
+                // init model and set data
                 $model->setData($data);
 
+                // try to save it
                 try {
+                    // save the data
                     $model->save();
-                    $this->messageManager->addSuccess(__('The greeting message has been saved.'));
+                    // display success message
+                    $this->messageManager->addSuccess(__('You saved the item.'));
+                    // clear previously saved data from session
                     $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
 
+                    // check if 'Save and Continue'
                     if ($this->getRequest()->getParam('back')) {
-                        return $resultRedirect->setPath('*/*/edit', ['greeting_id' => $model->getId(), '_current' => true]);
-                    }   
+                        return $resultRedirect->setPath('*/*/edit', [
+                            'greeting_id' => $model->getId()
+                        ]);
+                    }
+
+                    // go to grid
                     return $resultRedirect->setPath('*/*/');
-                } catch (LocalizedException $e) {
-                    $this->messageManager->addError($e->getMessage());
-                } catch (\RuntimeException $e) {
-                    $this->messageManager->addError($e->getMessage());
                 } catch (\Exception $e) {
-                    $this->messageManager->addException($e, __('Something went wrong while saving the greeting message.'));
+                    // display error message
+                    $this->messageManager->addError($e->getMessage());
+                    // save data in session
+                    $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData($data);
+
+                    // redirect to edit form
+                    return $resultRedirect->setPath('*/*/edit', [
+                        'greeting_id' => $this->getRequest()->getParam('greeting_id')
+                    ]);
                 }
-                $this->_getSession()->setFormData($data);
-                
-                return $resultRedirect->setPath('*/*/edit', ['greeting_id' => $this->getRequest()->getParam('greeting_id')]);
             }
+            
             return $resultRedirect->setPath('*/*/');
         }
     }

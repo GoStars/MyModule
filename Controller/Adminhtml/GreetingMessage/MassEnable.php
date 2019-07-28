@@ -8,9 +8,9 @@
     use Magento\Backend\App\Action;
 
     /**
-     * Class MassDelete
+     * Class MassEnable
      */
-    class MassDelete extends Action
+    class MassEnable extends Action
     {
         /**
          * @var Filter
@@ -46,13 +46,13 @@
         public function execute()
         {
             $collection = $this->filter->getCollection($this->collectionFactory->create());
-            $collectionSize = $collection->getSize();
 
             foreach ($collection as $item) {
-                $item->delete();
+                $item->setIsActive(true);
+                $item->save();
             }
 
-            $this->messageManager->addSuccess(__('A total of %1 record(s) have been deleted.', $collectionSize));
+            $this->messageManager->addSuccess(__('A total of %1 record(s) have been enabled.', $collection->getSize()));
 
             /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

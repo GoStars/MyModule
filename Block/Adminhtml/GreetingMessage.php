@@ -10,10 +10,10 @@
          * @return void
          */
         protected function _construct() {
-            $this->_controller = 'adminhtml';
             $this->_blockGroup = 'Magefan_MyModule';
-            $this->_headerText = __('Manage Greeting Message');
-            $this->_addButtonLabel = __('Add New Message');
+            $this->_controller = 'adminhtml_greetingMessage';
+            $this->_headerText = __('Items');
+            $this->_addButtonLabel = __('Add New Item');
             parent::_construct();
         }
     }

@@ -5,6 +5,7 @@
     use Magento\Framework\Setup\ModuleContextInterface;
     use Magento\Framework\Setup\SchemaSetupInterface;
     use Magento\Framework\DB\Ddl\Table;
+    use Magento\Framework\DB\Adapter\AdapterInterface;
 
     /**
      * Upgrade the Catalog module DB scheme
@@ -56,6 +57,31 @@
                         'default' => Table::TIMESTAMP_INIT_UPDATE,
                         'comment' => 'Updated At'
                     ]
+                );
+            }
+
+            if (version_compare($context->getVersion(), '1.0.4', '<')) {
+                $setup->getConnection()->addColumn(
+                    $setup->getTable('magefan_mymodule_greeting_message'),
+                    'is_active',
+                    [
+                        'type' => Table::TYPE_SMALLINT,
+                        'length' => null,
+                        'nullable' => false,
+                        'default' => '1',
+                        'comment' => 'Is Active'
+                    ]
+                );
+
+                $setup->getConnection()->addIndex(
+                    $setup->getTable('magefan_mymodule_greeting_message'),
+                    $setup->getConnection()->getIndexName(
+                        $setup->getTable('magefan_mymodule_greeting_message'),
+                        ['message', 'season'],
+                        AdapterInterface::INDEX_TYPE_FULLTEXT
+                    ),
+                    ['message', 'season'],
+                    AdapterInterface::INDEX_TYPE_FULLTEXT
                 );
             }
 
